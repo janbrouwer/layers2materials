@@ -35,7 +35,7 @@ module Brewsky
     end
     
     # add to the extension menu
-    UI.menu("Extensions").add_item("Layers naar materialen") {
+    UI.menu("Extensions").add_item("Create materials out of layers") {
   
       model = Sketchup.active_model
       entities = model.entities

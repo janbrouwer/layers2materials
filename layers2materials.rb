@@ -29,8 +29,8 @@ module Brewsky
 
     # Create Extension
     layers2materials = SketchupExtension.new "layers2materials", File.join( PATH, 'core.rb' )
-    layers2materials.version = '0.13.3'
-    layers2materials.description = "Extention that searches the entire model and creates materials for every layer."
+    layers2materials.version = '1.0.0'
+    layers2materials.description = "Extention that sets the material for every face in the model based on the layer the face is on."
     Sketchup.register_extension layers2materials, true
   end # module Layers2Materials
 end # module Brewsky

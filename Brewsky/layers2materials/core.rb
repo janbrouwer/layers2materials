@@ -36,24 +36,28 @@ module Brewsky
     
     # add to the extension menu
     UI.menu("Extensions").add_item("Create materials out of layers") {
-  
+      
       model = Sketchup.active_model
       entities = model.entities
       layers = model.layers
       materials = model.materials
-    
-      # create materials from layers
-      layers.each do |layer|
-        name = layer.name
-        unless materials[name]
-          material = materials.add( name )
-          #material.color = "White"
-          material.color = layer.color
-        end
-      end
       
-      # start search
-      scan( model.entities )
+      # Start undo section
+      model.start_operation("Layers to materials", disable_ui=true)
+      
+        # create materials from layers
+        layers.each do |layer|
+          name = layer.name
+          unless materials[name]
+            material = materials.add( name )
+            #material.color = "White"
+            material.color = layer.color
+          end
+        end
+        
+        # start search
+        scan( model.entities )
+      model.commit_operation
     }
     
   end # module Layers2Materials
